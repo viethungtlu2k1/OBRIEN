@@ -181,6 +181,11 @@ ob_start();
                                         echo '<p class="text-danger">* Email đã tồn tại</p>';
                                     }
                                 }
+                                if (isset($_GET['reply'])) {
+                                    if ($_GET['reply'] == "failed pass") {
+                                        echo '<p class="text-danger">* Yêu cầu nhập mật khẩu</p>';
+                                    }
+                                }
                             ?>
                             <form method="post">
                                 <div class="single-input-item mb-3">
@@ -368,8 +373,14 @@ if (isset($_POST['submit'])) {
     $fullname  = $_POST['fullname'];
     $email      = $_POST['email'];
     $phone      = $_POST['phone'];
-    $password      = $_POST['password'];
-    $sql_1 = "SELECT * FROM tbl_user WHERE email='$email'";
+    $_POST['password'];
+    $password = $_POST['password'];
+    if($_POST['password'] == ''){
+        $_SESSION['noti'] = '<p class = "text-danger">Yêu cầu nhập mật khẩu.</p>';
+        $value = 'failed pass';
+        header("Location:register.php?reply=$value");
+    }else{
+        $sql_1 = "SELECT * FROM tbl_user WHERE email='$email'";
     $result_1 = mysqli_query($conn, $sql_1);
     if (mysqli_num_rows($result_1) > 0) {
         $value = 'failed email';
@@ -384,11 +395,13 @@ if (isset($_POST['submit'])) {
             $_SESSION['noti'] = '<p class = "text-success">Đăng kí thành công.</p>';
             header("location:login.php");
         }else{
-            $_SESSION['noti'] = '<p class = "text-success">Đăng kí không thành công.</p>';
-            header("location:login.php");
+            $_SESSION['noti'] = '<p class = "text-danger">Đăng kí không thành công.</p>';
+            header("location:register.php");
         }
                    
     }
+    }
+    
         
 }
 

@@ -157,98 +157,40 @@ include("./config/constants.php");
                         "slidesToShow": 1
                         }}
                         ]'>
-                            <div class="single-item">
-                                <div class="single-product position-relative">
-                                    <div class="product-image">
-                                        <a class="d-block" href="product-details.php">
-                                            <img src="assets/images/product/menu-burger.jpg" alt="" class="product-image-1 w-100">
-                                            <img src="assets/images/product/menu-burger.jpg" alt="" class="product-image-2 position-absolute w-100">
-                                        </a>
-                                    </div>
-                                    <div class="product-content" style="padding-top: 20px;">
-                                        <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.php">Product dummy name</a></h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                        </div>
-                                    </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.php" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-item">
-                                <div class="single-product position-relative">
-                                    <div class="product-image">
-                                        <a class="d-block" href="product-details.php">
-                                            <img src="assets/images/product/menu-burger.jpg" alt="" class="product-image-1 w-100">
-                                            <img src="assets/images/product/menu-burger.jpg" alt="" class="product-image-2 position-absolute w-100">
-                                        </a>
-                                    </div>
-                                    <div class="product-content" style="padding-top: 20px;">
-                                        <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.php">Product dummy name</a></h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
+                            <?php
+                            $sql = "SELECT * FROM `tbl_food` WHERE active = 'Yes'";
+                            $result = mysqli_query($conn, $sql);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $title = $row['title'];
+                                $image = $row['image_name'];
+                                $price = $row['price'];
+                                ?>
+                                    <div class="single-item">
+                                        <div class="single-product position-relative">
+                                            <div class="product-image">
+                                                <a class="d-block" href="product-details.php">
+                                                    <img style="min-height: 340px;" src="images/food/<?=$image?>" alt="" class="product-image-1 w-100">
+                                                    <img style="min-height: 340px;" src="images/food/<?=$image?>" alt="" class="product-image-2 position-absolute w-100">
+                                                </a>
+                                            </div>
+                                            <div class="product-content" style="padding-top: 20px;">
+                                                <div class="product-title">
+                                                    <h4 class="title-2"> <a href="product-details.php"><?=$title?></a></h4>
+                                                </div>
+                                                <div class="price-box">
+                                                    <span class="regular-price ">$<?=$price?></span>
+                                                </div>
+                                            </div>
+                                            <div class="add-action d-flex position-absolute">
+                                                <a href="cart.php" title="Add To cart">
+                                                    <i class="ion-bag"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.php" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-item">
-                                <div class="single-product position-relative">
-                                    <div class="product-image">
-                                        <a class="d-block" href="product-details.php">
-                                            <img src="assets/images/product/menu-burger.jpg" alt="" class="product-image-1 w-100">
-                                            <img src="assets/images/product/menu-burger.jpg" alt="" class="product-image-2 position-absolute w-100">
-                                        </a>
-                                    </div>
-                                    <div class="product-content" style="padding-top: 20px;">
-                                        <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.php">Product dummy name</a></h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                        </div>
-                                    </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.php" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-item">
-                                <div class="single-product position-relative">
-                                    <div class="product-image">
-                                        <a class="d-block" href="product-details.php">
-                                            <img src="assets/images/product/menu-burger.jpg" alt="" class="product-image-1 w-100">
-                                            <img src="assets/images/product/menu-burger.jpg" alt="" class="product-image-2 position-absolute w-100">
-                                        </a>
-                                    </div>
-                                    <div class="product-content" style="padding-top: 20px;">
-                                        <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.php">Product dummy name</a></h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                        </div>
-                                    </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.php" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

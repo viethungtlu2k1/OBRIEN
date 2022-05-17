@@ -372,8 +372,14 @@ include("./config/constants.php");
 if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
-    $sql = "SELECT * FROM `tbl_user` WHERE `email` = '$email' ";
-
+    if($_POST['password'] == ''){
+        $_SESSION['noti'] = '<p class="text-danger">Nhập mật khẩu</p>';
+        header("location:login.php");
+    }elseif ($_POST['email'] == ''){
+        $_SESSION['noti'] = '<p class="text-danger">Nhập email</p>';
+        header("location:login.php");
+    }else{
+        $sql = "SELECT * FROM `tbl_user` WHERE `email` = '$email' ";
     $res = mysqli_query($conn, $sql);
     if ($res) {
         $row = mysqli_fetch_assoc($res);
@@ -391,5 +397,9 @@ if (isset($_POST["submit"])) {
             header("location:login.php");
         }
     }
-}
+    }
+    }
+        
+    
+
 ?>

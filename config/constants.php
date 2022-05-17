@@ -1,7 +1,7 @@
 <?php
-    
-        session_start(); 
-     
+if (!isset($_SESSION)) {
+    session_start();
+}
     $link = "localhost/foododer";
     $servername = "localhost";
     $username = "root";
