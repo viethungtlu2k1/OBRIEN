@@ -5,7 +5,7 @@
     <div class="wrapper">
         <?php
         $id = $_GET['id'];
-        $sql = "SELECT * FROM tb_order WHERE id = '$id'";
+        $sql = "SELECT * FROM tbl_order WHERE id = '$id'";
         $res = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($res);
         if ($count == 1) {

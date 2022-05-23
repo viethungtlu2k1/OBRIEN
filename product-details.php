@@ -1,3 +1,6 @@
+<?php
+include("./config/constants.php");
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -175,25 +178,36 @@
                         "swipe": false,
                         "asNavFor": ".pd-slider-nav"
                         }'>
+                                <?php
+                                $id_food = $_GET['id'];
+                                $sql = "SELECT * FROM `tbl_food` WHERE active = 'Yes' and id = '$id_food'";
+                                $result = mysqli_query($conn, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $id = $row['id'];
+                                    $title = $row['title'];
+                                    $image = $row['image_name'];
+                                    $price = $row['price'];
+                                    $description = $row['description'];
+                                }
+                                ?>
                                 <div class="single-image border">
-                                    <a href="assets/images/product/large-size/1.jpg">
-                                        <img src="assets/images/product/large-size/1.jpg" alt="Product">
+                                    <a href="images/food/<?= $image ?>">
+                                        <img src="images/food/<?= $image ?>" alt="Product">
                                     </a>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="col-lg-7 col-custom">
                         <div class="product-summery position-relative">
                             <div class="product-head mb-3">
-                                <h2 class="product-title">Sample product Countdown</h2>
+                                <h2 class="product-title"><?= $title ?></h2>
                             </div>
                             <div class="price-box mb-2">
-                                <span class="regular-price">$80.00</span>
-                                <span class="old-price"><del>$90.00</del></span>
+                                <span class="regular-price">$<?= $price ?></span>
                             </div>
-                            <p class="desc-content mb-5">I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
+                            <p class="desc-content mb-5"><?= $description ?></p>
                             <div class="quantity-with_btn mb-4">
                                 <div class="quantity">
                                     <div class="cart-plus-minus">
@@ -206,16 +220,13 @@
                                     <a class="btn obrien-button primary-btn" href="cart.php">Add to cart</a>
                                 </div>
                             </div>
-                            <div class="buy-button mb-5">
-                                <a href="#" class="btn obrien-button-3 black-button">Buy it now</a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Single Product Main Area End -->
-       
+
         <!-- Support Area Start Here -->
         <div class="support-area">
             <div class="container container-default custom-area">

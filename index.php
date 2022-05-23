@@ -66,11 +66,11 @@ include("./config/constants.php");
                                         <ul class="nav">
                                             <li>
                                                 <a class="active" href="index.php">
-                                                    <span  class="menu-text"> Home</span>
+                                                    <span class="menu-text"> Home</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a  href="shop.php">
+                                                <a href="shop.php">
                                                     <span class="menu-text">Foods</span>
                                                 </a>
                                             </li>
@@ -86,27 +86,42 @@ include("./config/constants.php");
                                     <div class="header-right-area main-nav">
                                         <ul class="nav">
                                             <?php
-                                            if (isset($_SESSION['user_id'])){
-                                                    ?>
-                                                        <li class="login-register-wrap d-none d-xl-flex">
-                                                            <span><a  href="logout.php">Logout</a></span>
-                                                        </li>
-                                                    <?php
-                                            }else{
-                                                    ?>
-                                                        <li class="login-register-wrap d-none d-xl-flex">
-                                                            <span><a  href="login.php">Login</a></span>
-                                                            <span><a href="register.php">Register</a></span>
-                                                        </li>
-                                                    <?php
-                                                
+                                            if (isset($_SESSION['user_id'])) {
+                                            ?>
+                                                <li class="login-register-wrap d-none d-xl-flex">
+                                                    <span><a href="logout.php">Logout</a></span>
+                                                </li>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <li class="login-register-wrap d-none d-xl-flex">
+                                                    <span><a href="login.php">Login</a></span>
+                                                    <span><a href="register.php">Register</a></span>
+                                                </li>
+                                            <?php
+
                                             }
                                             ?>
-                                            
+                                            <?php
+                                            $cartCount = 0;
+                                            if (isset($_SESSION['user_id'])) {
+                                                $user_id = $_SESSION['user_id'];
+                                                $sql = "SELECT * FROM `cart` WHERE id_user = $user_id";
+                                                $res = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($res) > 0) {
+                                                    while ($row = mysqli_fetch_assoc($res)) {
+                                                        $qty = $row['qty'];
+                                                        $cartCount = $cartCount + $qty;
+                                                    }
+                                                }
+                                            }
+
+
+                                            ?>
                                             <li class="minicart-wrap">
                                                 <a href="cart.php" class="minicart-btn toolbar-btn">
                                                     <i class="ion-bag"></i>
-                                                    <span class="cart-item_count">3</span>
+                                                    <span class="cart-item_count"><?= $cartCount ?></span>
                                                 </a>
                                             </li>
                                             <li class="mobile-menu-btn d-lg-none">
@@ -161,34 +176,35 @@ include("./config/constants.php");
                             $sql = "SELECT * FROM `tbl_food` WHERE active = 'Yes'";
                             $result = mysqli_query($conn, $sql);
                             while ($row = mysqli_fetch_assoc($result)) {
+                                $id = $row['id'];
                                 $title = $row['title'];
                                 $image = $row['image_name'];
                                 $price = $row['price'];
-                                ?>
-                                    <div class="single-item">
-                                        <div class="single-product position-relative">
-                                            <div class="product-image">
-                                                <a class="d-block" href="product-details.php">
-                                                    <img style="min-height: 340px;" src="images/food/<?=$image?>" alt="" class="product-image-1 w-100">
-                                                    <img style="min-height: 340px;" src="images/food/<?=$image?>" alt="" class="product-image-2 position-absolute w-100">
-                                                </a>
+                            ?>
+                                <div class="single-item">
+                                    <div class="single-product position-relative">
+                                        <div class="product-image">
+                                            <a class="d-block" href="product-details.php?id=<?= $id ?>">
+                                                <img style="min-height: 340px;" src="images/food/<?= $image ?>" alt="" class="product-image-1 w-100">
+                                                <img style="min-height: 340px;" src="images/food/<?= $image ?>" alt="" class="product-image-2 position-absolute w-100">
+                                            </a>
+                                        </div>
+                                        <div class="product-content" style="padding-top: 20px;">
+                                            <div class="product-title">
+                                                <h4 class="title-2"> <a href="product-details.php?id=<?= $id ?>"><?= $title ?></a></h4>
                                             </div>
-                                            <div class="product-content" style="padding-top: 20px;">
-                                                <div class="product-title">
-                                                    <h4 class="title-2"> <a href="product-details.php"><?=$title?></a></h4>
-                                                </div>
-                                                <div class="price-box">
-                                                    <span class="regular-price ">$<?=$price?></span>
-                                                </div>
-                                            </div>
-                                            <div class="add-action d-flex position-absolute">
-                                                <a href="cart.php" title="Add To cart">
-                                                    <i class="ion-bag"></i>
-                                                </a>
+                                            <div class="price-box">
+                                                <span class="regular-price ">$<?= $price ?></span>
                                             </div>
                                         </div>
+                                        <div class="add-action d-flex position-absolute">
+                                            <a href="addFood.php?id=<?= $id ?>" title="Add To cart">
+                                                <i class="ion-bag"></i>
+                                            </a>
+                                        </div>
                                     </div>
-                                <?php
+                                </div>
+                            <?php
                             }
                             ?>
                         </div>
@@ -197,7 +213,7 @@ include("./config/constants.php");
             </div>
         </div>
         <!-- Product Area End Here -->
-        
+
         <!-- Support Area Start Here -->
         <div class="support-area">
             <div class="container container-default custom-area">

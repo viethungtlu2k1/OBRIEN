@@ -134,7 +134,7 @@
         $res = mysqli_query($conn, $sql);
 
         if ($res == true){
-            $_SESSION['add'] = "<div class='success'> Food Added Successfully</div>";
+            $_SESSION['add'] = "<div class='success'> Đồ ăn được thêm thành công</div>";
             header("location: manage-food.php");
         }else{
             $_SESSION['add'] = "<div class='success'> Failed to Add Food</div>";

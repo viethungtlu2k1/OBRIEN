@@ -1,3 +1,6 @@
+<?php
+include("./config/constants.php");
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -81,70 +84,44 @@
                                 <div class="col-lg-2 col-xl-3 col-sm-6 col-6 col-custom">
                                     <div class="header-right-area main-nav">
                                         <ul class="nav">
-                                            <li class="login-register-wrap d-none d-xl-flex">
-                                                <span><a href="login.php">Login</a></span>
-                                                <span><a href="register.php">Register</a></span>
-                                            </li>
+                                            <?php
+                                            if (isset($_SESSION['user_id'])) {
+                                            ?>
+                                                <li class="login-register-wrap d-none d-xl-flex">
+                                                    <span><a href="logout.php">Logout</a></span>
+                                                </li>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <li class="login-register-wrap d-none d-xl-flex">
+                                                    <span><a href="login.php">Login</a></span>
+                                                    <span><a href="register.php">Register</a></span>
+                                                </li>
+                                            <?php
+
+                                            }
+                                            ?>
+                                            <?php
+                                            $cartCount = 0;
+                                            if (isset($_SESSION['user_id'])) {
+                                                $user_id = $_SESSION['user_id'];
+                                                $sql = "SELECT * FROM `cart` WHERE id_user = $user_id";
+                                                $res = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($res) > 0) {
+                                                    while ($row = mysqli_fetch_assoc($res)) {
+                                                        $qty = $row['qty'];
+                                                        $cartCount = $cartCount + $qty;
+                                                    }
+                                                }
+                                            }
+
+
+                                            ?>
                                             <li class="minicart-wrap">
-                                                <a href="#" class="minicart-btn toolbar-btn">
+                                                <a href="cart.php" class="minicart-btn toolbar-btn">
                                                     <i class="ion-bag"></i>
-                                                    <span class="cart-item_count">3</span>
+                                                    <span class="cart-item_count"><?= $cartCount ?></span>
                                                 </a>
-                                                <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/1.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php">11. Product with video - navy</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/2.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php" title="10. This is the large title for testing large title and there is an image for testing - white">10. This is the large title for testing...</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/3.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php">1. New and sale badge product - s / red</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cart-price-total d-flex justify-content-between">
-                                                        <h5>Total :</h5>
-                                                        <h5>$166.00</h5>
-                                                    </div>
-                                                    <div class="cart-links d-flex justify-content-center">
-                                                        <a class="obrien-button white-btn" href="cart.php">View cart</a>
-                                                        <a class="obrien-button white-btn" href="checkout.php">Checkout</a>
-                                                    </div>
-                                                </div>
                                             </li>
                                             <li class="mobile-menu-btn d-lg-none">
                                                 <a class="off-canvas-btn" href="#">
@@ -177,101 +154,103 @@
                         <!--shop toolbar end-->
                         <!-- Shop Wrapper Start -->
                         <div class="row shop_wrapper grid_3">
-                            <div class="col-md-6 col-sm-6 col-lg-4 col-custom product-area">
-                                <div class="single-product position-relative">
-                                    <div class="product-image">
-                                        <a class="d-block" href="product-details.php">
-                                            <img src="assets/images/product/1.jpg" alt="" class="product-image-1 w-100">
-                                            <img src="assets/images/product/2.jpg" alt="" class="product-image-2 position-absolute w-100">
-                                        </a>
-                                    </div>
-                                    <div class="product-content">
-                                        
-                                        <div class="product-title" style="padding-top: 20px;">
-                                            <h4 class="title-2"> <a href="product-details.php">Product dummy name</a></h4>
+                            <?php
+                            $search = "";
+                            if (isset($_GET['search'])) {
+                                $search = $_GET['search'];
+                                $sql = "SELECT * FROM `tbl_food` WHERE active = 'Yes' and title like '%$search%'";
+                            } else {
+                                $sql = "SELECT * FROM `tbl_food` WHERE active = 'Yes'";
+                            }
+
+                            $result = mysqli_query($conn, $sql);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $id = $row['id'];
+                                $title = $row['title'];
+                                $image = $row['image_name'];
+                                $price = $row['price'];
+                                $description = $row['description'];
+                            ?>
+
+                                <div class="col-md-6 col-sm-6 col-lg-4 col-custom product-area">
+                                    <div class="single-product position-relative">
+                                        <div class="product-image">
+                                            <a class="d-block" href="product-details.php?id=<?= $id ?>">
+                                                <img style="min-height: 340px;" src="images/food/<?= $image ?>" alt="" class="product-image-1 w-100">
+                                                <img style="min-height: 340px;" src="images/food/<?= $image ?>" alt="" class="product-image-2 position-absolute w-100">
+                                            </a>
                                         </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
+                                        <div class="product-content">
+
+                                            <div class="product-title" style="padding-top: 20px;">
+                                                <h4 class="title-2"> <a href="product-details.php?id=<?= $id ?>"><?= $title ?></a></h4>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="regular-price ">$<?= $price ?></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.php" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                    </div>
-                                    <div class="product-content-listview">
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.php">Product dummy name</a></h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                            <span class="old-price"><del>$90.00</del></span>
-                                        </div>
-                                        <div class="add-action-listview d-flex">
-                                            <a href="cart.php" title="Add To cart">
+                                        <div class="add-action d-flex position-absolute">
+                                            <a href="addFood.php?id=<?= $id ?>" title="Add To cart">
                                                 <i class="ion-bag"></i>
                                             </a>
-                                            <a href="compare.php" title="Compare">
-                                                <i class="ion-ios-loop-strong"></i>
-                                            </a>
-                                            <a href="wishlist.php" title="Add To Wishlist">
-                                                <i class="ion-ios-heart-outline"></i>
-                                            </a>
-                                            <a href="#exampleModalCenter" data-toggle="modal" title="Quick View">
-                                                <i class="ion-eye"></i>
-                                            </a>
                                         </div>
-                                        <p class="desc-content">
-                                            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
-                                        </p>
+                                        <div class="product-content-listview">
+                                            <div class="product-title">
+                                                <h4 class="title-2"> <a href="product-details.php?id=<?= $id ?>"><?= $title ?></a></h4>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="regular-price ">$<?= $price ?></span>
+                                            </div>
+                                            <div class="add-action-listview d-flex">
+                                                <a href="addFood.php?id=<?= $id ?>" title="Add To cart">
+                                                    <i class="ion-bag"></i>
+                                                </a>
+                                            </div>
+                                            <p class="desc-content">
+                                                <?= $description ?>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                         <!-- Shop Wrapper End -->
                     </div>
                     <div class="col-lg-3 col-12 col-custom">
                         <!-- Sidebar Widget Start -->
                         <aside class="sidebar_widget widget-mt">
-                            <div class="widget_inner">
-                                <div class="widget-list widget-mb-1">
-                                    <h3 class="widget-title">Search</h3>
-                                    <div class="search-box">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search Our Store" aria-label="Search Our Store">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" type="button">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
+                            <form action="shop.php">
+                                <div class="widget_inner">
+                                    <div class="widget-list widget-mb-1">
+                                        <h3 class="widget-title">Search</h3>
+                                        <div class="search-box">
+                                            <div class="input-group">
+                                                <?php
+                                                if (isset($_GET['search'])) {
+                                                    $search = $_GET['search'];
+                                                ?>
+                                                    <input value="<?= $search ?>" type="text" name="search" class="form-control" placeholder="Search Our Store" aria-label="Search Our Store">
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <input type="text" name="search" class="form-control" placeholder="Search Our Store" aria-label="Search Our Store">
+                                                <?php
+                                                }
+                                                ?>
+
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-secondary" type="submit">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="widget-list widget-mb-1">
-                                    <h3 class="widget-title">Menu Categories</h3>
-                                    <!-- Widget Menu Start -->
-                                    <nav>
-                                        <ul class="mobile-menu p-0 m-0">
-                                            <li class="menu-item-has-children"><a href="#">Breads</a>
-                                            </li>
-                                            <li class="menu-item-has-children"><a href="#">Fruits</a>
-                                            </li>
-                                            <li class="menu-item-has-children"><a href="#">Vagetables</a>
-                                            </li>
-                                            <li class="menu-item-has-children"><a href="#">Organic Food</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <!-- Widget Menu End -->
-                                </div>
-                            </div>
+                            </form>
+
                         </aside>
                         <!-- Sidebar Widget End -->
                     </div>
@@ -280,7 +259,7 @@
         </div>
         <!-- Shop Main Area End Here -->
         <!-- Support Area Start Here -->
-        <div class="support-area"  style="margin-top:50px;">
+        <div class="support-area" style="margin-top:50px;">
             <div class="container container-default custom-area">
                 <div class="row">
                     <div class="col-lg-12 col-custom">

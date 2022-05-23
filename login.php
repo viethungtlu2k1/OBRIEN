@@ -70,7 +70,7 @@ session_start();
                                                 </a>
                                             </li>
                                             <li>
-                                                <a  href="shop.php">
+                                                <a href="shop.php">
                                                     <span class="menu-text">Foods</span>
                                                 </a>
                                             </li>
@@ -85,70 +85,44 @@ session_start();
                                 <div class="col-lg-2 col-xl-3 col-sm-6 col-6 col-custom">
                                     <div class="header-right-area main-nav">
                                         <ul class="nav">
-                                            <li class="login-register-wrap d-none d-xl-flex">
-                                                <span><a class="active" href="login.php">Login</a></span>
-                                                <span><a href="register.php">Register</a></span>
-                                            </li>
+                                            <?php
+                                            if (isset($_SESSION['user_id'])) {
+                                            ?>
+                                                <li class="login-register-wrap d-none d-xl-flex">
+                                                    <span><a href="logout.php">Logout</a></span>
+                                                </li>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <li class="login-register-wrap d-none d-xl-flex">
+                                                    <span><a href="login.php">Login</a></span>
+                                                    <span><a href="register.php">Register</a></span>
+                                                </li>
+                                            <?php
+
+                                            }
+                                            ?>
+                                            <?php
+                                            $cartCount = 0;
+                                            if (isset($_SESSION['user_id'])) {
+                                                $user_id = $_SESSION['user_id'];
+                                                $sql = "SELECT * FROM `cart` WHERE id_user = $user_id";
+                                                $res = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($res) > 0) {
+                                                    while ($row = mysqli_fetch_assoc($res)) {
+                                                        $qty = $row['qty'];
+                                                        $cartCount = $cartCount + $qty;
+                                                    }
+                                                }
+                                            }
+
+
+                                            ?>
                                             <li class="minicart-wrap">
-                                                <a href="#" class="minicart-btn toolbar-btn">
+                                                <a href="cart.php" class="minicart-btn toolbar-btn">
                                                     <i class="ion-bag"></i>
-                                                    <span class="cart-item_count">3</span>
+                                                    <span class="cart-item_count"><?= $cartCount ?></span>
                                                 </a>
-                                                <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/1.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php">11. Product with video - navy</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/2.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php" title="10. This is the large title for testing large title and there is an image for testing - white">10. This is the large title for testing...</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/3.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php">1. New and sale badge product - s / red</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cart-price-total d-flex justify-content-between">
-                                                        <h5>Total :</h5>
-                                                        <h5>$166.00</h5>
-                                                    </div>
-                                                    <div class="cart-links d-flex justify-content-center">
-                                                        <a class="obrien-button white-btn" href="cart.php">View cart</a>
-                                                        <a class="obrien-button white-btn" href="checkout.php">Checkout</a>
-                                                    </div>
-                                                </div>
                                             </li>
                                             <li class="mobile-menu-btn d-lg-none">
                                                 <a class="off-canvas-btn" href="#">
@@ -200,7 +174,7 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="single-input-item mb-3">
-                                <input class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" name="submit" value="Login">
+                                    <input class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" name="submit" value="Login">
                                 </div>
                                 <div class="single-input-item">
                                     <a href="register.php">Creat Account</a>
@@ -372,34 +346,34 @@ include("./config/constants.php");
 if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
-    if($_POST['password'] == ''){
+    if ($_POST['password'] == '') {
         $_SESSION['noti'] = '<p class="text-danger">Nhập mật khẩu</p>';
         header("location:login.php");
-    }elseif ($_POST['email'] == ''){
+    } elseif ($_POST['email'] == '') {
         $_SESSION['noti'] = '<p class="text-danger">Nhập email</p>';
         header("location:login.php");
-    }else{
+    } else {
         $sql = "SELECT * FROM `tbl_user` WHERE `email` = '$email' ";
-    $res = mysqli_query($conn, $sql);
-    if ($res) {
-        $row = mysqli_fetch_assoc($res);
-        if (mysqli_num_rows($res) > 0){
-            if (password_verify($pass, $row['password'])) {
-                // đăng nhập thành công 
-                $_SESSION['user_id'] = $row['id'];
-                header("location:index.php");
+        $res = mysqli_query($conn, $sql);
+        if ($res) {
+            $row = mysqli_fetch_assoc($res);
+            if (mysqli_num_rows($res) > 0) {
+                if (password_verify($pass, $row['password'])) {
+                    // đăng nhập thành công 
+                    $_SESSION['user_id'] = $row['id'];
+                    header("location:index.php");
+                } else {
+                    $_SESSION['noti'] = '<p class="text-danger">Tài khoản mật khẩu chưa chính xác</p>';
+                    header("location:login.php");
+                }
             } else {
                 $_SESSION['noti'] = '<p class="text-danger">Tài khoản mật khẩu chưa chính xác</p>';
                 header("location:login.php");
             }
-        }else{
-             $_SESSION['noti'] = '<p class="text-danger">Tài khoản mật khẩu chưa chính xác</p>';
-            header("location:login.php");
         }
     }
-    }
-    }
-        
-    
+}
+
+
 
 ?>

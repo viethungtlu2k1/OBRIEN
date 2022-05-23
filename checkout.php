@@ -1,3 +1,6 @@
+<?php
+include("./config/constants.php");
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -61,86 +64,13 @@
                                     <nav class="main-nav d-flex justify-content-center">
                                         <ul class="nav">
                                             <li>
-                                                <a href="index.php">
+                                                <a class="active" href="index.php">
                                                     <span class="menu-text"> Home</span>
-                                                    <i class="fa fa-angle-down"></i>
                                                 </a>
-                                                <ul class="dropdown-submenu dropdown-hover">
-                                                    <li><a href="index.php">Home Page - 1</a></li>
-                                                    <li><a href="index-2.php">Home Page - 2</a></li>
-                                                    <li><a href="index-3.php">Home Page - 3</a></li>
-                                                    <li><a href="index-4.php">Home Page - 4</a></li>
-                                                </ul>
                                             </li>
                                             <li>
-                                                <a class="active" href="shop.php">
-                                                    <span class="menu-text">Shop</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <div class="mega-menu dropdown-hover">
-                                                    <div class="menu-colum">
-                                                        <ul>
-                                                            <li><span class="mega-menu-text">Shop</span></li>
-                                                            <li><a href="shop.php">Shop Left Sidebar</a></li>
-                                                            <li><a href="shop-right-sidebar.php">Shop Right Sidebar</a></li>
-                                                            <li><a href="shop-list-left.php">Shop List Left Sidebar</a></li>
-                                                            <li><a href="shop-list-right.php">Shop List Right Sidebar</a></li>
-                                                            <li><a href="shop-fullwidth.php">Shop Full Width</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu-colum">
-                                                        <ul>
-                                                            <li><span class="mega-menu-text">Product</span></li>
-                                                            <li><a href="product-details.php">Single Product</a></li>
-                                                            <li><a href="variable-product-details.php">Variable Product</a></li>
-                                                            <li><a href="external-product-details.php">External Product</a></li>
-                                                            <li><a href="gallery-product-details.php">Gallery Product</a></li>
-                                                            <li><a href="countdown-product-details.php">Countdown Product</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu-colum">
-                                                        <ul>
-                                                            <li><span class="mega-menu-text">Others</span></li>
-                                                            <li><a href="error-404.php">Error 404</a></li>
-                                                            <li><a href="compare.php">Compare Page</a></li>
-                                                            <li><a href="cart.php">Cart Page</a></li>
-                                                            <li><a class="active" href="checkout.php">Checkout Page</a></li>
-                                                            <li><a href="wishlist.php">Wishlist Page</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="blog-details-fullwidth.php">
-                                                    <span class="menu-text"> Blog</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-submenu dropdown-hover">
-                                                    <li><a href="blog.php">Blog Left Sidebar</a></li>
-                                                    <li><a href="blog-list-right-sidebar.php">Blog List Right Sidebar</a></li>
-                                                    <li><a href="blog-list-fullwidth.php">Blog List Fullwidth</a></li>
-                                                    <li><a href="blog-grid.php">Blog Grid Page</a></li>
-                                                    <li><a href="blog-grid-right-sidebar.php">Blog Grid Right Sidebar</a></li>
-                                                    <li><a href="blog-grid-fullwidth.php">Blog Grid Fullwidth</a></li>
-                                                    <li><a href="blog-details-sidebar.php">Blog Details Sidebar</a></li>
-                                                    <li><a href="blog-details-fullwidth.php">Blog Details Fullwidth</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span class="menu-text"> Pages</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-submenu dropdown-hover">
-                                                    <li><a href="frequently-questions.php">FAQ</a></li>
-                                                    <li><a href="my-account.php">My Account</a></li>
-                                                    <li><a href="login.php">Login</a></li>
-                                                    <li><a href="register.php">Register</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="about-us.php">
-                                                    <span class="menu-text"> About</span>
+                                                <a href="shop.php">
+                                                    <span class="menu-text">Foods</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -154,83 +84,44 @@
                                 <div class="col-lg-2 col-xl-3 col-sm-6 col-6 col-custom">
                                     <div class="header-right-area main-nav">
                                         <ul class="nav">
-                                            <li class="login-register-wrap d-none d-xl-flex">
-                                                <span><a href="login.php">Login</a></span>
-                                                <span><a href="register.php">Register</a></span>
-                                            </li>
-                                            <li class="sidemenu-wrap d-none d-lg-flex">
-                                                <a href="#">USD <i class="fa fa-caret-down"></i> </a>
-                                                <ul class="dropdown-sidemenu dropdown-hover-2 dropdown-language">
-                                                    <li><a href="#">USD - US Dollar</a></li>
-                                                    <li><a href="#">EUR - Euro</a></li>
-                                                    <li><a href="#">GBP - British Pound</a></li>
-                                                    <li><a href="#">INR - Indian Rupee</a></li>
-                                                    <li><a href="#">BDT - Bangladesh Taka</a></li>
-                                                    <li><a href="#">JPY - Japan Yen</a></li>
-                                                    <li><a href="#">CAD - Canada Dollar</a></li>
-                                                    <li><a href="#">AUD - Australian Dollar</a></li>
-                                                </ul>
-                                            </li>
+                                            <?php
+                                            if (isset($_SESSION['user_id'])) {
+                                            ?>
+                                                <li class="login-register-wrap d-none d-xl-flex">
+                                                    <span><a href="logout.php">Logout</a></span>
+                                                </li>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <li class="login-register-wrap d-none d-xl-flex">
+                                                    <span><a href="login.php">Login</a></span>
+                                                    <span><a href="register.php">Register</a></span>
+                                                </li>
+                                            <?php
+
+                                            }
+                                            ?>
+                                            <?php
+                                            $cartCount = 0;
+                                            if (isset($_SESSION['user_id'])) {
+                                                $user_id = $_SESSION['user_id'];
+                                                $sql = "SELECT * FROM `cart` WHERE id_user = $user_id";
+                                                $res = mysqli_query($conn, $sql);
+                                                if (mysqli_num_rows($res) > 0) {
+                                                    while ($row = mysqli_fetch_assoc($res)) {
+                                                        $qty = $row['qty'];
+                                                        $cartCount = $cartCount + $qty;
+                                                    }
+                                                }
+                                            }
+
+
+                                            ?>
                                             <li class="minicart-wrap">
-                                                <a href="#" class="minicart-btn toolbar-btn">
+                                                <a href="cart.php" class="minicart-btn toolbar-btn">
                                                     <i class="ion-bag"></i>
-                                                    <span class="cart-item_count">3</span>
+                                                    <span class="cart-item_count"><?= $cartCount ?></span>
                                                 </a>
-                                                <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/1.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php">11. Product with video - navy</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/2.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php" title="10. This is the large title for testing large title and there is an image for testing - white">10. This is the large title for testing...</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/3.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php">1. New and sale badge product - s / red</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cart-price-total d-flex justify-content-between">
-                                                        <h5>Total :</h5>
-                                                        <h5>$166.00</h5>
-                                                    </div>
-                                                    <div class="cart-links d-flex justify-content-center">
-                                                        <a class="obrien-button white-btn" href="cart.php">View cart</a>
-                                                        <a class="obrien-button white-btn" href="checkout.php">Checkout</a>
-                                                    </div>
-                                                </div>
                                             </li>
                                             <li class="mobile-menu-btn d-lg-none">
                                                 <a class="off-canvas-btn" href="#">
@@ -246,405 +137,11 @@
                 </div>
             </div>
             <!-- Main Header Area End -->
-            <!-- Sticky Header Start Here-->
-            <div class="main-header header-sticky">
-                <div class="container container-default custom-area">
-                    <div class="row">
-                        <div class="col-lg-12 col-custom">
-                            <div class="row align-items-center">
-                                <div class="col-lg-2 col-xl-2 col-sm-6 col-6 col-custom">
-                                    <div class="header-logo">
-                                        <a href="index.php">
-                                            <img class="img-full" src="assets/images/logo/logo.png" alt="Header Logo">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8 col-xl-7 position-static d-none d-lg-block col-custom">
-                                    <nav class="main-nav d-flex justify-content-center">
-                                        <ul class="nav">
-                                            <li>
-                                                <a href="index.php">
-                                                    <span class="menu-text"> Home</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-submenu dropdown-hover">
-                                                    <li><a href="index.php">Home Page - 1</a></li>
-                                                    <li><a href="index-2.php">Home Page - 2</a></li>
-                                                    <li><a href="index-3.php">Home Page - 3</a></li>
-                                                    <li><a href="index-4.php">Home Page - 4</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="active" href="shop.php">
-                                                    <span class="menu-text">Shop</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <div class="mega-menu dropdown-hover">
-                                                    <div class="menu-colum">
-                                                        <ul>
-                                                            <li><span class="mega-menu-text">Shop</span></li>
-                                                            <li><a href="shop.php">Shop Left Sidebar</a></li>
-                                                            <li><a href="shop-right-sidebar.php">Shop Right Sidebar</a></li>
-                                                            <li><a href="shop-list-left.php">Shop List Left Sidebar</a></li>
-                                                            <li><a href="shop-list-right.php">Shop List Right Sidebar</a></li>
-                                                            <li><a href="shop-fullwidth.php">Shop Full Width</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu-colum">
-                                                        <ul>
-                                                            <li><span class="mega-menu-text">Product</span></li>
-                                                            <li><a href="product-details.php">Single Product</a></li>
-                                                            <li><a href="variable-product-details.php">Variable Product</a></li>
-                                                            <li><a href="external-product-details.php">External Product</a></li>
-                                                            <li><a href="gallery-product-details.php">Gallery Product</a></li>
-                                                            <li><a href="countdown-product-details.php">Countdown Product</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu-colum">
-                                                        <ul>
-                                                            <li><span class="mega-menu-text">Others</span></li>
-                                                            <li><a href="error-404.php">Error 404</a></li>
-                                                            <li><a href="compare.php">Compare Page</a></li>
-                                                            <li><a href="cart.php">Cart Page</a></li>
-                                                            <li><a class="active" href="checkout.php">Checkout Page</a></li>
-                                                            <li><a href="wishlist.php">Wishlist Page</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="blog-details-fullwidth.php">
-                                                    <span class="menu-text"> Blog</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-submenu dropdown-hover">
-                                                    <li><a href="blog.php">Blog Left Sidebar</a></li>
-                                                    <li><a href="blog-list-right-sidebar.php">Blog List Right Sidebar</a></li>
-                                                    <li><a href="blog-list-fullwidth.php">Blog List Fullwidth</a></li>
-                                                    <li><a href="blog-grid.php">Blog Grid Page</a></li>
-                                                    <li><a href="blog-grid-right-sidebar.php">Blog Grid Right Sidebar</a></li>
-                                                    <li><a href="blog-grid-fullwidth.php">Blog Grid Fullwidth</a></li>
-                                                    <li><a href="blog-details-sidebar.php">Blog Details Sidebar</a></li>
-                                                    <li><a href="blog-details-fullwidth.php">Blog Details Fullwidth</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span class="menu-text"> Pages</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-submenu dropdown-hover">
-                                                    <li><a href="frequently-questions.php">FAQ</a></li>
-                                                    <li><a href="my-account.php">My Account</a></li>
-                                                    <li><a href="login.php">Login</a></li>
-                                                    <li><a href="register.php">Register</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="about-us.php">
-                                                    <span class="menu-text"> About</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="contact-us.php">
-                                                    <span class="menu-text">Contact</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div class="col-lg-2 col-xl-3 col-sm-6 col-6 col-custom">
-                                    <div class="header-right-area main-nav">
-                                        <ul class="nav">
-                                            <li class="login-register-wrap d-none d-xl-flex">
-                                                <span><a href="login.php">Login</a></span>
-                                                <span><a href="register.php">Register</a></span>
-                                            </li>
-                                            <li class="sidemenu-wrap d-none d-lg-flex">
-                                                <a href="#">USD <i class="fa fa-caret-down"></i> </a>
-                                                <ul class="dropdown-sidemenu dropdown-hover-2 dropdown-language">
-                                                    <li><a href="#">USD - US Dollar</a></li>
-                                                    <li><a href="#">EUR - Euro</a></li>
-                                                    <li><a href="#">GBP - British Pound</a></li>
-                                                    <li><a href="#">INR - Indian Rupee</a></li>
-                                                    <li><a href="#">BDT - Bangladesh Taka</a></li>
-                                                    <li><a href="#">JPY - Japan Yen</a></li>
-                                                    <li><a href="#">CAD - Canada Dollar</a></li>
-                                                    <li><a href="#">AUD - Australian Dollar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="minicart-wrap">
-                                                <a href="#" class="minicart-btn toolbar-btn">
-                                                    <i class="ion-bag"></i>
-                                                    <span class="cart-item_count">3</span>
-                                                </a>
-                                                <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/1.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php">11. Product with video - navy</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/2.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php" title="10. This is the large title for testing large title and there is an image for testing - white">10. This is the large title for testing...</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-cart-item">
-                                                        <div class="cart-img">
-                                                            <a href="cart.php"><img src="assets/images/cart/3.jpg" alt=""></a>
-                                                        </div>
-                                                        <div class="cart-text">
-                                                            <h5 class="title"><a href="cart.php">1. New and sale badge product - s / red</a></h5>
-                                                            <div class="cart-text-btn">
-                                                                <div class="cart-qty">
-                                                                    <span>1×</span>
-                                                                    <span class="cart-price">$98.00</span>
-                                                                </div>
-                                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cart-price-total d-flex justify-content-between">
-                                                        <h5>Total :</h5>
-                                                        <h5>$166.00</h5>
-                                                    </div>
-                                                    <div class="cart-links d-flex justify-content-center">
-                                                        <a class="obrien-button white-btn" href="cart.php">View cart</a>
-                                                        <a class="obrien-button white-btn" href="checkout.php">Checkout</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="mobile-menu-btn d-lg-none">
-                                                <a class="off-canvas-btn" href="#mobileMenu">
-                                                    <i class="fa fa-bars"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Sticky Header End Here -->
-            <!-- off-canvas menu start -->
-            <aside class="off-canvas-wrapper" id="mobileMenu">
-                <div class="off-canvas-overlay"></div>
-                <div class="off-canvas-inner-content">
-                    <div class="btn-close-off-canvas">
-                        <i class="fa fa-times"></i>
-                    </div>
-                    <div class="off-canvas-inner">
-                        <div class="search-box-offcanvas">
-                            <form>
-                                <input type="text" placeholder="Search product...">
-                                <button class="search-btn"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                        <!-- mobile menu start -->
-                        <div class="mobile-navigation">
-                            <!-- mobile menu navigation start -->
-                            <nav>
-                                <ul class="mobile-menu">
-                                    <li class="menu-item-has-children"><a href="#">Home</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.php">Home Page 1</a></li>
-                                            <li><a href="index-2.php">Home Page 2</a></li>
-                                            <li><a href="index-3.php">Home Page 3</a></li>
-                                            <li><a href="index-4.php">Home Page 4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Shop</a>
-                                        <ul class="megamenu dropdown">
-                                            <li class="mega-title has-children"><a href="#">Shop Layouts</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="shop.php">Shop Left Sidebar</a></li>
-                                                    <li><a href="shop-right-sidebar.php">Shop Right Sidebar</a></li>
-                                                    <li><a href="shop-list-left.php">Shop List Left Sidebar</a></li>
-                                                    <li><a href="shop-list-right.php">Shop List Right Sidebar</a></li>
-                                                    <li><a href="shop-fullwidth.php">Shop Full Width</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-title has-children"><a href="#">Product Details</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="product-details.php">Single Product Details</a></li>
-                                                    <li><a href="variable-product-details.php">Variable Product Details</a></li>
-                                                    <li><a href="external-product-details.php">External Product Details</a></li>
-                                                    <li><a href="gallery-product-details.php">Gallery Product Details</a></li>
-                                                    <li><a href="countdown-product-details.php">Countdown Product Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-title has-children"><a href="#">Others</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="error404.php">Error 404</a></li>
-                                                    <li><a href="compare.php">Compare Page</a></li>
-                                                    <li><a href="cart.php">Cart Page</a></li>
-                                                    <li><a href="checkout.php">Checkout Page</a></li>
-                                                    <li><a href="wishlist.php">Wish List Page</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children "><a href="#">Blog</a>
-                                        <ul class="dropdown">
-                                            <li><a href="blog.php">Blog Left Sidebar</a></li>
-                                            <li><a href="blog-list-right-sidebar.php">Blog List Right Sidebar</a></li>
-                                            <li><a href="blog-list-fullwidth.php">Blog List Fullwidth</a></li>
-                                            <li><a href="blog-grid.php">Blog Grid Page</a></li>
-                                            <li><a href="blog-grid-right-sidebar.php">Blog Grid Right Sidebar</a></li>
-                                            <li><a href="blog-grid-fullwidth.php">Blog Grid Fullwidth</a></li>
-                                            <li><a href="blog-details-sidebar.php">Blog Details Sidebar Page</a></li>
-                                            <li><a href="blog-details-fullwidth.php">Blog Details Fullwidth Page</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children "><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="frequently-questions.php">FAQ</a></li>
-                                            <li><a href="my-account.php">My Account</a></li>
-                                            <li><a href="login-register.php">login &amp; register</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="about-us.php">About Us</a></li>
-                                    <li><a href="contact-us.php">Contact</a></li>
-                                </ul>
-                            </nav>
-                            <!-- mobile menu navigation end -->
-                        </div>
-                        <!-- mobile menu end -->
-                        <div class="header-top-settings offcanvas-curreny-lang-support">
-                            <!-- mobile menu navigation start -->
-                            <nav>
-                                <ul class="mobile-menu">
-                                    <li class="menu-item-has-children"><a href="#">My Account</a>
-                                        <ul class="dropdown">
-                                            <li><a href="login.php">Login</a></li>
-                                            <li><a href="Register.php">Register</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Currency:USD</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">USD - US Dollar</a></li>
-                                            <li><a href="#">EUR - Euro</a></li>
-                                            <li><a href="#">GBP - British Pound</a></li>
-                                            <li><a href="#">INR - Indian Rupee</a></li>
-                                            <li><a href="#">BDT - Bangladesh Taka</a></li>
-                                            <li><a href="#">JPY - Japan Yen</a></li>
-                                            <li><a href="#">CAD - Canada Dollar</a></li>
-                                            <li><a href="#">AUD - Australian Dollar</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <!-- mobile menu navigation end -->
-                        </div>
-                        <!-- offcanvas widget area start -->
-                        <div class="offcanvas-widget-area">
-                            <div class="top-info-wrap text-left text-black">
-                                <ul>
-                                    <li>
-                                        <i class="fa fa-phone"></i>
-                                        <a href="info@yourdomain.com">(1245) 2456 012</a>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-envelope"></i>
-                                        <a href="info@yourdomain.com">info@yourdomain.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="off-canvas-widget-social">
-                                <a title="Facebook-f" href="#"><i class="fa fa-facebook-f"></i></a>
-                                <a title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
-                                <a title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                                <a title="Youtube" href="#"><i class="fa fa-youtube"></i></a>
-                                <a title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>
-                            </div>
-                        </div>
-                        <!-- offcanvas widget area end -->
-                    </div>
-                </div>
-            </aside>
-            <!-- off-canvas menu end -->
         </header>
-        <!-- Breadcrumb Area Start Here -->
-        <div class="breadcrumbs-area position-relative">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="breadcrumb-content position-relative section-content">
-                            <h3 class="title-3">Checkout</h3>
-                            <ul>
-                                <li><a href="index.php">Home</a></li>
-                                <li>Checkout</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Breadcrumb Area End Here -->
+
         <!-- Checkout Area Start Here -->
         <div class="checkout-area">
             <div class="container container-default-2 custom-container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="coupon-accordion">
-                            <h3>Returning customer? <span id="showlogin">Click here to login</span></h3>
-                            <div id="checkout-login" class="coupon-content">
-                                <div class="coupon-info">
-                                    <p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est
-                                        sit amet ipsum luctus.</p>
-                                    <form action="#">
-                                        <p class="form-row-first">
-                                            <label>Username or email <span class="required">*</span></label>
-                                            <input type="text">
-                                        </p>
-                                        <p class="form-row-last">
-                                            <label>Password <span class="required">*</span></label>
-                                            <input type="password">
-                                        </p>
-                                        <p class="form-row">
-                                            <input type="checkbox" id="remember_me">
-                                            <label for="remember_me">Remember me</label>
-                                        </p>
-                                        <p class="lost-password"><a href="#">Lost your password?</a></p>
-                                    </form>
-                                </div>
-                            </div>
-                            <h3>Have a coupon? <span id="showcoupon">Click here to enter your code</span></h3>
-                            <div id="checkout_coupon" class="coupon-checkout-content">
-                                <div class="coupon-info">
-                                    <form action="#">
-                                        <p class="checkout-coupon">
-                                            <input placeholder="Coupon code" type="text">
-                                            <input class="coupon-inner_btn" value="Apply Coupon" type="submit">
-                                        </p>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-lg-6 col-12">
                         <form action="#">
@@ -652,33 +149,8 @@
                                 <h3>Billing Details</h3>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="country-select clearfix">
-                                            <label>Country <span class="required">*</span></label>
-                                            <select class="myniceselect nice-select wide rounded-0">
-                                                <option data-display="Bangladesh">Bangladesh</option>
-                                                <option value="uk">London</option>
-                                                <option value="rou">Romania</option>
-                                                <option value="fr">French</option>
-                                                <option value="de">Germany</option>
-                                                <option value="aus">Australia</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>First Name <span class="required">*</span></label>
-                                            <input placeholder="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>Last Name <span class="required">*</span></label>
-                                            <input placeholder="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Company Name</label>
+                                            <label>Full Name <span class="required">*</span></label>
                                             <input placeholder="" type="text">
                                         </div>
                                     </div>
@@ -688,138 +160,10 @@
                                             <input placeholder="Street address" type="text">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Town / City <span class="required">*</span></label>
-                                            <input type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>State / County <span class="required">*</span></label>
-                                            <input placeholder="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>Postcode / Zip <span class="required">*</span></label>
-                                            <input placeholder="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>Email Address <span class="required">*</span></label>
-                                            <input placeholder="" type="email">
-                                        </div>
-                                    </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Phone <span class="required">*</span></label>
                                             <input type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list create-acc">
-                                            <input id="cbox" type="checkbox">
-                                            <label for="cbox">Create an account?</label>
-                                        </div>
-                                        <div id="cbox-info" class="checkout-form-list create-account">
-                                            <p class="mb-2">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
-                                            <label>Account password <span class="required">*</span></label>
-                                            <input placeholder="password" type="password">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="different-address">
-                                    <div class="ship-different-title">
-                                        <div>
-                                            <input id="ship-box" type="checkbox">
-                                            <label for="ship-box">Ship to a different address?</label>
-                                        </div>
-                                    </div>
-                                    <div id="ship-box-info" class="row mt-2">
-                                        <div class="col-md-12">
-                                            <div class="myniceselect country-select clearfix">
-                                                <label>Country <span class="required">*</span></label>
-                                                <select class="myniceselect nice-select wide rounded-0">
-                                                    <option data-display="Bangladesh">Bangladesh</option>
-                                                    <option value="uk">London</option>
-                                                    <option value="rou">Romania</option>
-                                                    <option value="fr">French</option>
-                                                    <option value="de">Germany</option>
-                                                    <option value="aus">Australia</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>First Name <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>Last Name <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>Company Name</label>
-                                                <input placeholder="" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>Address <span class="required">*</span></label>
-                                                <input placeholder="Street address" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>Town / City <span class="required">*</span></label>
-                                                <input type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>State / County <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>Postcode / Zip <span class="required">*</span></label>
-                                                <input placeholder="" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>Email Address <span class="required">*</span></label>
-                                                <input placeholder="" type="email">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-form-list">
-                                                <label>Phone <span class="required">*</span></label>
-                                                <input type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="order-notes mt-3">
-                                        <div class="checkout-form-list checkout-form-list-2">
-                                            <label>Order Notes</label>
-                                            <textarea id="checkout-mess" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -838,25 +182,40 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="cart_item">
-                                            <td class="cart-product-name"> Vestibulum suscipit<strong class="product-quantity">
-                                    × 1</strong></td>
-                                            <td class="cart-product-total text-center"><span class="amount">£165.00</span></td>
-                                        </tr>
-                                        <tr class="cart_item">
-                                            <td class="cart-product-name"> Vestibulum suscipit<strong class="product-quantity">
-                                    × 1</strong></td>
-                                            <td class="cart-product-total text-center"><span class="amount">£165.00</span></td>
-                                        </tr>
+                                        <?php
+                                        $user_id = $_SESSION['user_id'];
+                                        $sql = "SELECT * FROM `cart` WHERE id_user = $user_id";
+                                        $res = mysqli_query($conn, $sql);
+                                        $cartTotal = 0;
+                                        if (mysqli_num_rows($res) > 0) {
+                                            while ($row = mysqli_fetch_assoc($res)) {
+                                                $id_food = $row['id_food'];
+                                                $qty = $row['qty'];
+                                                $sql2 = "SELECT * FROM `tbl_food` WHERE $id_food = id and active = 'Yes'";
+                                                $res2 = mysqli_query($conn, $sql2);
+                                                $row2 = mysqli_fetch_assoc($res2);
+                                                $total = (float)$qty * $row2['price'];
+                                                $cartTotal  = $cartTotal + $total;
+                                        ?>
+                                                <tr class="cart_item">
+                                                    <td class="cart-product-name"> <?= $row2['title'] ?><strong class="product-quantity">
+                                                            × <?= $qty ?></strong></td>
+                                                    <td class="cart-product-total text-center"><span class="amount">$<?= $total ?></span></td>
+                                                </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+
                                     </tbody>
                                     <tfoot>
                                         <tr class="cart-subtotal">
-                                            <th>Cart Subtotal</th>
-                                            <td class="text-center"><span class="amount">£215.00</span></td>
+                                            <th>Shipping</th>
+                                            <td class="text-center"><span class="amount">$10</span></td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Order Total</th>
-                                            <td class="text-center"><strong><span class="amount">£215.00</span></strong></td>
+                                            <td class="text-center"><strong><span class="amount">$<?= $cartTotal ?></span></strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -868,44 +227,17 @@
                                             <div class="card-header" id="#payment-1">
                                                 <h5 class="panel-title mb-2">
                                                     <a href="#" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        Direct Bank Transfer.
+                                                        Payment on delivery.
                                                     </a>
                                                 </h5>
                                             </div>
                                             <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                                 <div class="card-body mb-2 mt-2">
-                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                                    <p>When you receive the goods, please pay the delivery person.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-header" id="#payment-2">
-                                                <h5 class="panel-title mb-2">
-                                                    <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                        Cheque Payment
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                                                <div class="card-body mb-2 mt-2">
-                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" id="#payment-3">
-                                                <h5 class="panel-title mb-2">
-                                                    <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                        PayPal
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" data-parent="#accordion">
-                                                <div class="card-body mb-2 mt-2">
-                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="order-button-payment">
                                         <input value="Place order" type="submit">

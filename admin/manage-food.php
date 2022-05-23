@@ -6,8 +6,7 @@
         <br>
         <?php
         if (isset($_SESSION['add'])) {
-            echo $_SESSION['add'];
-            unset($_SESSION['add']);
+            echo '<script>alert("Đã thêm đồ ăn thành công");</script>';
         }
         if (isset($_SESSION['delete'])) {
             echo $_SESSION['delete'];

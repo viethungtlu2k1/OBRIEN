@@ -44,7 +44,7 @@
                 <th>Chi tiết đơn hàng</th>
             </tr>
             <?php
-            $sql = "SELECT * FROM tb_order WHERE status = '$select'";
+            $sql = "SELECT * FROM tbl_order WHERE status = '$select'";
             $res = mysqli_query($conn, $sql);
             $sn = 1;
             if (mysqli_num_rows($res) > 0) {
