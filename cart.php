@@ -175,8 +175,8 @@ if (!isset($_SESSION['user_id'])) {
                                                 $sql2 = "SELECT * FROM `tbl_food` WHERE $id_food = id and active = 'Yes'";
                                                 $res2 = mysqli_query($conn, $sql2);
                                                 $row2 = mysqli_fetch_assoc($res2);
-                                                $total = (float)$qty * $row2['price'];
-                                                $cartTotal  = $cartTotal + $total;
+                                                $total = number_format($qty * $row2['price'], 2);
+                                                $cartTotal  = number_format($cartTotal + $total, 2);
                                         ?>
                                                 <tr>
                                                     <td class="pro-thumbnail"><a href="product-details.php?id=<?= $id_food ?>"><img class="img-fluid" src="images/food/<?= $row2['image_name'] ?>" style="min-height: 160px;" alt="Product" /></a></td>
@@ -229,11 +229,11 @@ if (!isset($_SESSION['user_id'])) {
                                         </tr>
                                         <tr>
                                             <td>Shipping</td>
-                                            <td>$10</td>
+                                            <td>$0</td>
                                         </tr>
                                         <tr class="total">
                                             <td>Total</td>
-                                            <td class="total-amount">$<?= $cartTotal + 10 ?></td>
+                                            <td class="total-amount">$<?= $cartTotal ?></td>
                                         </tr>
                                     </table>
                                 </div>

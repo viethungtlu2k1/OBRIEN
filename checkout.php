@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include("./config/constants.php");
 ?>
 <!doctype html>
@@ -142,116 +143,124 @@ include("./config/constants.php");
         <!-- Checkout Area Start Here -->
         <div class="checkout-area">
             <div class="container container-default-2 custom-container">
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <form action="#">
-                            <div class="checkbox-form">
-                                <h3>Billing Details</h3>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Full Name <span class="required">*</span></label>
-                                            <input placeholder="" type="text">
+                <form action="" method="POST">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <form action="#">
+                                <div class="checkbox-form">
+                                    <h3>Billing Details</h3>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <?php
+                                            $user_id = $_SESSION['user_id'];
+                                            $sql = "SELECT * FROM `tbl_user` WHERE id = $user_id";
+                                            $res = mysqli_query($conn, $sql);
+                                            $row = mysqli_fetch_assoc($res)
+                                            ?>
+                                            <div class="checkout-form-list">
+                                                <label>Full Name <span class="required">*</span></label>
+                                                <input name="full_name" type="text" value="<?= $row['full_name'] ?>">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Address <span class="required">*</span></label>
-                                            <input placeholder="Street address" type="text">
+                                        <div class="col-md-12">
+                                            <div class="checkout-form-list">
+                                                <label>Address <span class="required">*</span></label>
+                                                <input placeholder="Street address" type="text" name="address">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>Phone <span class="required">*</span></label>
-                                            <input type="text">
+                                        <div class="col-md-6">
+                                            <div class="checkout-form-list">
+                                                <label>Phone <span class="required">*</span></label>
+                                                <input type="text" value="<?= $row['phone'] ?>" name="phone">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="your-order">
-                            <h3>Your order</h3>
-                            <div class="your-order-table table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="cart-product-name">Product</th>
-                                            <th class="cart-product-total">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $user_id = $_SESSION['user_id'];
-                                        $sql = "SELECT * FROM `cart` WHERE id_user = $user_id";
-                                        $res = mysqli_query($conn, $sql);
-                                        $cartTotal = 0;
-                                        if (mysqli_num_rows($res) > 0) {
-                                            while ($row = mysqli_fetch_assoc($res)) {
-                                                $id_food = $row['id_food'];
-                                                $qty = $row['qty'];
-                                                $sql2 = "SELECT * FROM `tbl_food` WHERE $id_food = id and active = 'Yes'";
-                                                $res2 = mysqli_query($conn, $sql2);
-                                                $row2 = mysqli_fetch_assoc($res2);
-                                                $total = (float)$qty * $row2['price'];
-                                                $cartTotal  = $cartTotal + $total;
-                                        ?>
-                                                <tr class="cart_item">
-                                                    <td class="cart-product-name"> <?= $row2['title'] ?><strong class="product-quantity">
-                                                            × <?= $qty ?></strong></td>
-                                                    <td class="cart-product-total text-center"><span class="amount">$<?= $total ?></span></td>
-                                                </tr>
-                                        <?php
+                            </form>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="your-order">
+                                <h3>Your order</h3>
+                                <div class="your-order-table table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="cart-product-name">Product</th>
+                                                <th class="cart-product-total">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $user_id = $_SESSION['user_id'];
+                                            $sql = "SELECT * FROM `cart` WHERE id_user = $user_id";
+                                            $res = mysqli_query($conn, $sql);
+                                            $cartTotal = 0;
+                                            if (mysqli_num_rows($res) > 0) {
+                                                while ($row = mysqli_fetch_assoc($res)) {
+                                                    $id_food = $row['id_food'];
+                                                    $qty = $row['qty'];
+                                                    $sql2 = "SELECT * FROM `tbl_food` WHERE $id_food = id and active = 'Yes'";
+                                                    $res2 = mysqli_query($conn, $sql2);
+                                                    $row2 = mysqli_fetch_assoc($res2);
+                                                    $total = number_format($qty * $row2['price'], 2);
+                                                    $cartTotal  = number_format($cartTotal + $total, 2);
+                                            ?>
+                                                    <tr class="cart_item">
+                                                        <td class="cart-product-name"> <?= $row2['title'] ?><strong class="product-quantity">
+                                                                × <?= $qty ?></strong></td>
+                                                        <td class="cart-product-total text-center"><span class="amount">$<?= $total ?></span></td>
+                                                    </tr>
+                                            <?php
+                                                }
                                             }
-                                        }
-                                        ?>
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr class="cart-subtotal">
-                                            <th>Shipping</th>
-                                            <td class="text-center"><span class="amount">$10</span></td>
-                                        </tr>
-                                        <tr class="order-total">
-                                            <th>Order Total</th>
-                                            <td class="text-center"><strong><span class="amount">$<?= $cartTotal ?></span></strong></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <div class="payment-method">
-                                <div class="payment-accordion">
-                                    <div id="accordion">
-                                        <div class="card">
-                                            <div class="card-header" id="#payment-1">
-                                                <h5 class="panel-title mb-2">
-                                                    <a href="#" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        Payment on delivery.
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                                                <div class="card-body mb-2 mt-2">
-                                                    <p>When you receive the goods, please pay the delivery person.</p>
+                                            ?>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="cart-subtotal">
+                                                <th>Shipping</th>
+                                                <td class="text-center"><span class="amount">$0</span></td>
+                                            </tr>
+                                            <tr class="order-total">
+                                                <th>Order Total</th>
+                                                <td class="text-center"><strong><span class="amount">$<?= $cartTotal ?></span></strong></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="payment-method">
+                                    <div class="payment-accordion">
+                                        <div id="accordion">
+                                            <div class="card">
+                                                <div class="card-header" id="#payment-1">
+                                                    <h5 class="panel-title mb-2">
+                                                        <a href="#" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                            Payment on delivery.
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                                    <div class="card-body mb-2 mt-2">
+                                                        <p>When you receive the goods, please pay the delivery person.</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                    </div>
-                                    <div class="order-button-payment">
-                                        <input value="Place order" type="submit">
+                                        </div>
+                                        <div class="order-button-payment">
+                                            <input value="Place order" type="submit" name="submit">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <!-- Checkout Area End Here -->
         <!-- Support Area Start Here -->
-        <div class="support-area">
+        <div class=" support-area">
             <div class="container container-default custom-area">
                 <div class="row">
                     <div class="col-lg-12 col-custom">
@@ -405,3 +414,42 @@ include("./config/constants.php");
 </body>
 
 </html>
+
+
+<?php
+
+if (isset($_POST['submit'])) {
+    $full_name = $_POST['full_name'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+    $date = date("Y-m-d H:i:s");
+    $user_id = $_SESSION['user_id'];
+    $id_order = random_int(0, 1000000);
+    if ($_POST['full_name'] == "" || $_POST['address'] == "" || $_POST['phone'] == "") {
+        echo "<script> alert('Not enough information has been entered') </script>";
+    } else {
+        $sql = "INSERT INTO `tbl_order`(`id`,`id_user`, `order_date`, `status`, `customer_name`, `customer_phone`, `customer_address`) 
+        VALUES ('$id_order','$user_id','$date',0,'$full_name','$phone','$address')";
+        $res = mysqli_query($conn, $sql);
+        $sql = "SELECT * FROM `cart` WHERE id_user = $user_id";
+        $res = mysqli_query($conn, $sql);
+        //$cartTotal = 0;
+        if (mysqli_num_rows($res) > 0) {
+            while ($row = mysqli_fetch_assoc($res)) {
+                $id_food = $row['id_food'];
+                $qty = $row['qty'];
+                $sql2 = "INSERT INTO `order_food`(`id_food`, `id_order`, `qty`) 
+                VALUES ('$id_food','$id_order','$qty')";
+                $res2 = mysqli_query($conn, $sql2);
+                //$cartTotal  = $cartTotal + $total;
+            }
+            // khi dat hang xong phai xoa trong gio hang
+            $sql = "DELETE FROM `cart` WHERE id_user = $user_id";
+            $res = mysqli_query($conn, $sql);
+            echo "<script> alert('Order Success') </script>";
+            header("location:index.php");
+        }
+    }
+}
+
+?>

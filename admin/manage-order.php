@@ -4,24 +4,24 @@
     <div class="wrapper">
         <h1>Manage Order</h1>
         <?php
-            if (isset($_SESSION['update-order'])){
-                echo $_SESSION['update-order'];
-                unset($_SESSION['update-order']);
-            }
-        
+        if (isset($_SESSION['update-order'])) {
+            echo $_SESSION['update-order'];
+            unset($_SESSION['update-order']);
+        }
+
         ?>
         <form action="" method="POST">
             <select name="option_order">
                 <?php
-                $select = "Chưa xử lí";
-                if (isset($_SESSION['select'])){
+                $select = 0;
+                if (isset($_SESSION['select'])) {
                     $select = $_SESSION['select'];
                     unset($_SESSION['select']);
                 }
                 ?>
-                <option value="Chưa xử lí" <?= $select == "Chưa xử lí" ? 'selected' : '' ?>>Chưa xử lí</option>
-                <option value="Đang xử lí" <?= $select == "Đang xử lí" ? 'selected' : '' ?>>Đang xử lí</option>
-                <option value="Đã giao" <?= $select == "Đã giao" ? 'selected' : '' ?>>Đã giao</option>
+                <option value="0" <?= $select == "0" ? 'selected' : '' ?>>Chưa xử lí</option>
+                <option value="1" <?= $select == "1" ? 'selected' : '' ?>>Đang xử lí</option>
+                <option value="2" <?= $select == "2" ? 'selected' : '' ?>>Đã giao</option>
                 <?php
                 ?>
             </select>
@@ -37,10 +37,7 @@
 
         <table class="tbl-full">
             <tr>
-                <th>S.N.</th>
-                <th>Food</th>
-                <th>Số lượng</th>
-                <th>Tổng Tiền</th>
+                <th>ID</th>
                 <th>Chi tiết đơn hàng</th>
             </tr>
             <?php
@@ -50,19 +47,15 @@
             if (mysqli_num_rows($res) > 0) {
                 while ($row = mysqli_fetch_assoc($res)) {
                     $id = $row['id'];
-                    $food = $row['food'];
-                    $qty = $row['qty'];
-                    $price = $row['price'];
-                    $tongtien = (int)$qty * $price;
-                    
+                    // $qty = $row['qty'];
+                    // $price = $row['price'];
+                    // $tongtien = (int)$qty * $price;
+
             ?>
                     <tr>
-                        <td><?=$sn++?> </td>
-                        <td><?=$food?></td>
-                        <td><?=$qty?></td>
-                        <td><?='$'.$tongtien?></td>
+                        <td><?= $id ?> </td>
                         <td>
-                            <a href="edit-order.php?id=<?=$id?>" class="btn-secondary">Chi tiết</a>
+                            <a href="edit-order.php?id=<?= $id ?>" class="btn-secondary">Chi tiết</a>
                         </td>
                     </tr>
             <?php
