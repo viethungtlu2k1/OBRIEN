@@ -31,21 +31,23 @@
                 <?php
                 $sql2 = "SELECT * FROM order_food WHERE id_order = '$id'";
                 $res2 = mysqli_query($conn, $sql2);
-                $total = 0;
+                $cartTotal = 0;
                 while ($row2 = mysqli_fetch_assoc($res2)) {
+                    $total = 0;
                     $qty = $row2['qty'];
                     $id_food = $row2['id_food'];
                     $sql3 = "SELECT * FROM tbl_food WHERE id = '$id_food'";
                     $res3 = mysqli_query($conn, $sql3);
                     $row3 = mysqli_fetch_assoc($res3);
                     $total = number_format($total + $row3['price'] * $qty, 2);
+                    $cartTotal = number_format($cartTotal + $row3['price'] * $qty, 2);
 
                 ?>
                     <tr>
                         <td><?= $row3['title'] ?></td>
                         <td><?= $qty ?> </td>
-                        <td><?= $row3['price'] ?></td>
-                        <td><?= $total ?></td>
+                        <td>$<?= $row3['price'] ?></td>
+                        <td>$<?= $total ?></td>
                     </tr>
                 <?php
 
@@ -54,35 +56,35 @@
 
 
             </table>
-        </form>
-        <div class="row-order" style="margin: 10px 0;">
-            <p style="display: inline-block; min-width: 100px;">Tổng tiền: </p>
-            <input type="text" value="Thay đổi" disabled>
-        </div>
-        <div class="row-order" style="margin: 10px 0;">
-            <p style="display: inline-block; min-width: 100px;">FullName: </p>
-            <input type="text" value="<?= $customer_name ?>" name="fullname">
-        </div>
-        <div class="row-order" style="margin: 10px 0;">
-            <p style="display: inline-block; min-width: 100px;">Phone: </p>
-            <input type="text" value="<?= $customer_phone ?>" name="phone">
-        </div>
-        <div class="row-order" style="margin: 10px 0;">
-            <p style="display: inline-block; min-width: 100px;">Address: </p>
-            <input type="text" value="<?= $customer_address ?>" name="address">
-        </div>
-        <div class="row-order" style="margin: 10px 0;">
-            <p style="display: inline-block; min-width: 100px;">Trạng thái: </p>
-            <select name="status">
-                <option value="Chưa xử lí" <?= $status == "Chưa xử lí" ? 'selected' : '' ?>>Chưa xử lí</option>
-                <option value="Đang xử lí" <?= $status == "Đang xử lí" ? 'selected' : '' ?>>Đang xử lí</option>
-                <option value="Đã giao" <?= $status == "Đã giao" ? 'selected' : '' ?>>Đã giao</option>
-            </select>
-            <input type="submit" name="submit" value="Thay đổi">
-        </div>
-        <?php
+            <div class="row-order" style="margin: 10px 0;">
+                <p style="display: inline-block; min-width: 100px;">Tổng tiền: </p>
+                <input type="text" value="$<?= $cartTotal ?>" disabled>
+            </div>
+            <div class="row-order" style="margin: 10px 0;">
+                <p style="display: inline-block; min-width: 100px;">FullName: </p>
+                <input type="text" value="<?= $customer_name ?>" name="fullname">
+            </div>
+            <div class="row-order" style="margin: 10px 0;">
+                <p style="display: inline-block; min-width: 100px;">Phone: </p>
+                <input type="text" value="<?= $customer_phone ?>" name="phone">
+            </div>
+            <div class="row-order" style="margin: 10px 0;">
+                <p style="display: inline-block; min-width: 100px;">Address: </p>
+                <input type="text" value="<?= $customer_address ?>" name="address">
+            </div>
+            <div class="row-order" style="margin: 10px 0;">
+                <p style="display: inline-block; min-width: 100px;">Trạng thái: </p>
+                <select name="status">
+                    <option value="0" <?= $status == "0" ? 'selected' : '' ?>>Chưa xử lí</option>
+                    <option value="1" <?= $status == "1" ? 'selected' : '' ?>>Đang xử lí</option>
+                    <option value="2" <?= $status == "2" ? 'selected' : '' ?>>Đã giao</option>
+                </select>
+                <input type="submit" name="submit" value="Thay đổi">
+            </div>
+            <?php
 
-        ?>
+            ?>
+        </form>
 
     </div>
 </div>
@@ -90,9 +92,8 @@
 <?php
 if (isset($_POST['submit'])) {
     $status = $_POST['status'];
-    $id = $_POST['id'];
-    $sql = "UPDATE `tb_order` SET `status` = '$status' WHERE `tb_order`.`id` = $id";
-
+    // $id = $_POST['id'];
+    $sql = "UPDATE `tbl_order` SET `status` = '$status' WHERE `tbl_order`.`id` = $id";
 
     $res = mysqli_query($conn, $sql);
 
