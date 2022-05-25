@@ -24,9 +24,9 @@
             <table width=100%>
                 <tr>
                     <th>Tên món ăn</th>
-                    <th>Số lượng</th>
-                    <th>Đơn giá</th>
-                    <th>Tổng</th>
+                    <th>Quantity</th>
+                    <th>Unit price</th>
+                    <th>Total</th>
                 </tr>
                 <?php
                 $sql2 = "SELECT * FROM order_food WHERE id_order = '$id'";
@@ -57,7 +57,7 @@
 
             </table>
             <div class="row-order" style="margin: 10px 0;">
-                <p style="display: inline-block; min-width: 100px;">Tổng tiền: </p>
+                <p style="display: inline-block; min-width: 100px;">Total Order: </p>
                 <input type="text" value="$<?= $cartTotal ?>" disabled>
             </div>
             <div class="row-order" style="margin: 10px 0;">
@@ -75,11 +75,11 @@
             <div class="row-order" style="margin: 10px 0;">
                 <p style="display: inline-block; min-width: 100px;">Trạng thái: </p>
                 <select name="status">
-                    <option value="0" <?= $status == "0" ? 'selected' : '' ?>>Chưa xử lí</option>
-                    <option value="1" <?= $status == "1" ? 'selected' : '' ?>>Đang xử lí</option>
-                    <option value="2" <?= $status == "2" ? 'selected' : '' ?>>Đã giao</option>
+                    <option value="0" <?= $status == "0" ? 'selected' : '' ?>>No process</option>
+                    <option value="1" <?= $status == "1" ? 'selected' : '' ?>>Processing</option>
+                    <option value="2" <?= $status == "2" ? 'selected' : '' ?>>Delivered</option>
                 </select>
-                <input type="submit" name="submit" value="Thay đổi">
+                <input type="submit" name="submit" value="Change">
             </div>
             <?php
 

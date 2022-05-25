@@ -19,13 +19,13 @@
                     unset($_SESSION['select']);
                 }
                 ?>
-                <option value="0" <?= $select == "0" ? 'selected' : '' ?>>Chưa xử lí</option>
-                <option value="1" <?= $select == "1" ? 'selected' : '' ?>>Đang xử lí</option>
-                <option value="2" <?= $select == "2" ? 'selected' : '' ?>>Đã giao</option>
+                <option value="0" <?= $select == "0" ? 'selected' : '' ?>>No process</option>
+                <option value="1" <?= $select == "1" ? 'selected' : '' ?>>Processing</option>
+                <option value="2" <?= $select == "2" ? 'selected' : '' ?>>Delivered</option>
                 <?php
                 ?>
             </select>
-            <button type="submit">Tìm</button>
+            <button type="submit">Find</button>
         </form>
 
         <?php
@@ -38,7 +38,7 @@
         <table class="tbl-full">
             <tr>
                 <th>ID</th>
-                <th>Chi tiết đơn hàng</th>
+                <th>Order details</th>
             </tr>
             <?php
             $sql = "SELECT * FROM tbl_order WHERE status = '$select'";
@@ -55,7 +55,7 @@
                     <tr>
                         <td><?= $id ?> </td>
                         <td>
-                            <a href="edit-order.php?id=<?= $id ?>" class="btn-secondary">Chi tiết</a>
+                            <a href="edit-order.php?id=<?= $id ?>" class="btn-secondary">Details</a>
                         </td>
                     </tr>
             <?php

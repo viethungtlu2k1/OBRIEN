@@ -1,12 +1,12 @@
-<?php include('../config/constants.php') ?>
-
 <?php
-    if (!isset($_SESSION['user'])){
-        // chua dang nhap 
-        $_SESSION['no-login-message'] = "<div class='error text-center'>Please login to acces Admin Panel.</div>";
-        header("location: login.php");
-        
-    }
+include('../config/constants.php');
+include('login-check.php');
+
+if (!isset($_SESSION['user'])) {
+    // chua dang nhap 
+    $_SESSION['no-login-message'] = "<div class='error text-center'>Please login to acces Admin Panel.</div>";
+    header("location: login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,13 +22,20 @@
 </head>
 
 <body>
-<div class="menu text-center">
+    <div class="menu text-center">
         <div class="wrapper">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="manage-admin.php">Account</a></li>
-                <li><a href="manage-category.php">Category</a></li>
-                <li><a href="manage-food.php">Food</a></li>
+                <?php
+                if (checkUser() == true) {
+                ?>
+                    <li><a href="manage-admin.php">Account</a></li>
+                    <li><a href="manage-category.php">Category</a></li>
+                    <li><a href="manage-food.php">Food</a></li>
+                <?php
+                }
+                ?>
+
                 <li><a href="manage-order.php">Order</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>

@@ -3,8 +3,8 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Manage Admin</h1>
-        
+        <h1>Manage Account</h1>
+
         <br>
 
         <?php
@@ -32,13 +32,16 @@
             echo $_SESSION['change-pwd'];
             unset($_SESSION['change-pwd']);
         }
-        
-        
+
+
         ?>
         <br><br>
         <!-- button to add admin -->
-        <a href="add-admin.php" class="btn-primary">Add Admin</a>
+        <a href="add-admin.php" class="btn-primary">Add employee account</a>
         <br />
+        <br>
+
+        <h3>Account empleyee</h3>
         <table class="tbl-full">
             <tr>
                 <th>S.N.</th>
@@ -47,7 +50,7 @@
                 <th>Actions</th>
             </tr>
             <?php
-            $sql = "SELECT * FROM tbl_user where level !=0";
+            $sql = "SELECT * FROM tbl_user where level = 1";
 
             $result = mysqli_query($conn, $sql);
             $sn = 1;
@@ -60,8 +63,8 @@
             ?>
                     <tr>
                         <td><?= $sn++ ?> </td>
-                        <td><?= $full_name?></td>
-                        <td><?= $phone?></td>
+                        <td><?= $full_name ?></td>
+                        <td><?= $phone ?></td>
                         <td>
                             <a href="update-password.php?id= <?php echo $id ?>" class="btn-primary">Change Pasword</a>
                             <a href="update-admin.php?id= <?php echo $id ?>" class="btn-secondary">Update Admin</a>
@@ -73,10 +76,52 @@
 
 
                 }
-            } 
+            }
 
             ?>
-            
+
+        </table>
+        <br>
+
+        <h3>Account custumer</h3>
+        <table class="tbl-full">
+            <tr>
+                <th>S.N.</th>
+                <th>Fullname</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+            <?php
+            $sql = "SELECT * FROM tbl_user where level =0";
+
+            $result = mysqli_query($conn, $sql);
+            $sn = 1;
+            if (mysqli_num_rows($result) > 0) {
+                // output data of each row
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row['id'];
+                    $full_name = $row['full_name'];
+                    $phone = $row['phone'];
+            ?>
+                    <tr>
+                        <td><?= $sn++ ?> </td>
+                        <td><?= $full_name ?></td>
+                        <td><?= $phone ?></td>
+                        <td>
+                            <a href="update-password.php?id= <?php echo $id ?>" class="btn-primary">Change Pasword</a>
+                            <a href="update-admin.php?id= <?php echo $id ?>" class="btn-secondary">Update Admin</a>
+                            <a href="delete-admin.php?id= <?php echo $id ?>" class="btn-danger">Delete Admin</a>
+                        </td>
+                    </tr>
+
+            <?php
+
+
+                }
+            }
+
+            ?>
+
         </table>
 
     </div>
