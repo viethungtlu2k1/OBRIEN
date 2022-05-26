@@ -347,7 +347,6 @@ if (isset($_POST['submit'])) {
     $fullname  = $_POST['fullname'];
     $email      = $_POST['email'];
     $phone      = $_POST['phone'];
-    $_POST['password'];
     $password = $_POST['password'];
     if ($_POST['password'] == '') {
         $_SESSION['noti'] = '<p class = "text-danger">Yêu cầu nhập mật khẩu.</p>';
