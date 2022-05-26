@@ -201,25 +201,28 @@ include("./config/constants.php");
                     </div>
                     <div class="col-lg-7 col-custom">
                         <div class="product-summery position-relative">
-                            <div class="product-head mb-3">
-                                <h2 class="product-title"><?= $title ?></h2>
-                            </div>
-                            <div class="price-box mb-2">
-                                <span class="regular-price">$<?= $price ?></span>
-                            </div>
-                            <p class="desc-content mb-5"><?= $description ?></p>
-                            <div class="quantity-with_btn mb-4">
-                                <div class="quantity">
-                                    <div class="cart-plus-minus">
-                                        <input class="cart-plus-minus-box" value="0" type="text">
-                                        <div class="dec qtybutton">-</div>
-                                        <div class="inc qtybutton">+</div>
+                            <form action="addFood.php" method="GET">
+                                <div class="product-head mb-3">
+                                    <h2 class="product-title"><?= $title ?></h2>
+                                </div>
+                                <div class="price-box mb-2">
+                                    <span class="regular-price">$<?= $price ?></span>
+                                </div>
+                                <p class="desc-content mb-5"><?= $description ?></p>
+                                <div class="quantity-with_btn mb-4">
+                                    <div class="quantity">
+                                        <div class="cart-plus-minus">
+                                            <input class="cart-plus-minus-box" value="1" name="qty" type="text">
+                                            <div class="dec qtybutton">-</div>
+                                            <div class="inc qtybutton">+</div>
+                                        </div>
+                                    </div>
+                                    <div class="add-to_cart">
+                                        <input type="hidden" name="id" value="<?= $id ?>">
+                                        <input type="submit" name="submit" class="btn obrien-button primary-btn" value="Add to cart">
                                     </div>
                                 </div>
-                                <div class="add-to_cart">
-                                    <a class="btn obrien-button primary-btn" href="cart.php">Add to cart</a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -456,3 +459,10 @@ include("./config/constants.php");
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['submit'])) {
+    $qty = $_POST['qty'];
+    header("location:addFood.php?id=<?= $id ?>");
+}
+?>
