@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th5 24, 2022 lúc 04:59 PM
+-- Thời gian đã tạo: Th5 27, 2022 lúc 07:50 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.5
 
@@ -38,7 +38,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id_user`, `id_food`, `qty`) VALUES
-(4, 5, 1);
+(4, 5, 1),
+(18, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -109,8 +110,7 @@ CREATE TABLE `tbl_food` (
 INSERT INTO `tbl_food` (`id`, `title`, `description`, `price`, `image_name`, `category_id`, `active`) VALUES
 (2, 'Humberger ', 'Hamburger is a type of food that consists of ground beef sandwich in the middle. The meat can be grilled, fried, smoked or grilled over an open fire', '5.00', 'menu-burger.jpg', 3, 'Yes'),
 (4, 'Pizza', 'Pizza, Tiếng La tinh thường đọc là Pi-da, là loại bánh dẹt, tròn được chế biến từ bột mì, nấm men... sau khi đã được ủ bột để nghỉ ít nhất 24 tiếng đồng hồ và nhào nặn thành loại bánh có hình dạng tròn và dẹt, và được cho vào lò nướng chín trước khi ăn.', '8.00', 'menu-pizza.jpg', 4, 'Yes'),
-(5, 'Humberger Tho Nhi Ki', 'Humberger Tho Nhi Ki', '10.00', 'humberger2.jpg', 3, 'Yes'),
-(8, 'BimBim', 'BimBim', '1.00', 'tunhien.jpg', 3, 'Yes');
+(5, 'Humberger Tho Nhi Ki', 'Humberger Tho Nhi Ki', '10.00', 'humberger2.jpg', 3, 'Yes');
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,7 @@ CREATE TABLE `tbl_order` (
 
 INSERT INTO `tbl_order` (`id`, `id_user`, `order_date`, `status`, `customer_name`, `customer_phone`, `customer_address`) VALUES
 (238528, 18, '2022-05-23', 1, 'CaoCanh', '1234567890', 'sadsad'),
-(313309, 4, '2022-05-23', 0, 'viethung', '123', 'vp'),
+(313309, 4, '2022-05-23', 1, 'viethung', '123', 'vp'),
 (750836, 18, '2022-05-23', 2, 'CaoCanh', '1234567890', 'cccc'),
 (991740, 18, '2022-05-23', 0, 'CaoCanh', '1234567890', 'hcm');
 
@@ -158,14 +158,27 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `full_name`, `phone`, `email`, `password`, `level`) VALUES
-(2, 'Admin', '123456789', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 3),
+(2, 'Admin', '123456789', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 2),
 (4, 'viethung', '123', 'viethung@gmail.com', '$2y$10$E.0TersCxVEGZpNh27rUKuYfFQWWwBn6uaJMnVsPqrUHS6XPH7iZ.', 0),
-(5, 'viethung2', '123', 'viethung2@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', 1),
-(18, 'CaoCanh', '1234567890', 'caocanh@gmail.com', '$2y$10$kLbWYTIb1E/BNSmfIho/DujZjU3JQpmeTFB0AoWP1EFb8GefE1jQK', 0);
+(18, 'CaoCanh', '1234567890', 'caocanh@gmail.com', '$2y$10$kLbWYTIb1E/BNSmfIho/DujZjU3JQpmeTFB0AoWP1EFb8GefE1jQK', 0),
+(19, 'viethung', '30052001', 'viethung@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `cart`
+--
+ALTER TABLE `cart`
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_food` (`id_food`);
+
+--
+-- Chỉ mục cho bảng `order_food`
+--
+ALTER TABLE `order_food`
+  ADD KEY `id_food` (`id_food`);
 
 --
 -- Chỉ mục cho bảng `tbl_category`
@@ -177,7 +190,8 @@ ALTER TABLE `tbl_category`
 -- Chỉ mục cho bảng `tbl_food`
 --
 ALTER TABLE `tbl_food`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Chỉ mục cho bảng `tbl_order`
@@ -211,7 +225,7 @@ ALTER TABLE `tbl_food`
 -- AUTO_INCREMENT cho bảng `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
